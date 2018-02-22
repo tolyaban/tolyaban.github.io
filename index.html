@@ -15,363 +15,183 @@
     <link href="fonts/ProximaNovaRegular" rel="stylesheet">
     <link href="fonts/Nautilus" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> 
-    
-  	 <!-- Site title
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Site title
     ================================================== -->
     
 
   </head>
 
   <body>
-    <div class="wrapper">
 
-      <div class="container">
-       <header class="sticky-header clearfix">
-        
-        <nav class="top-menu">
-          <ul>
-            <li><a class="active" href="#home">Home</a></li>
-            <li><a href="#what_we_do">What we do?</a></li>
-            <li><a href="#testimonial">Testimonials</a></li>
-            <li><a href="#contact">Contact Us</a></li>
-            <li><span>Switch</span> </li>
-            <li><input type="text" placeholder="Search.."></li>
-          </ul>
-        </nav>
-        
-        
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4">Wellcome to weather forecast </h1>
+            <!--    ==================================================== -->
+            <div class="row">
 
-      </header><!-- .header-->
-    </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" id="city" class="form-control"  placeholder="Input your town..  ">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" onclick="loadWeather()" type="button">Serch</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h2 id="cityweather"> </h2>
+            <!--    ==================================================== -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist" >
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Link</a>
+                    </li>
 
-    <div class="content">
-      
-      <div id="home" class="clearfix">
-        <div class="container"> 
-         <h1> Art is Eternal Happiness </h1>
-         <div class="flex"><a href="#" class="work">WORK WITH US</a></div>
-         <div class="flex"><a href="#" class="scroll">scroll down  &#8595;</a></div>
-       </div>  
-     </div>
-     
-     <div id="what_we_do" class="clearfix">
-      <div class="container">  
-        <div class="we_do">
-         <div class="ahead "> 
-          <h2>WHAT WE DO sfgsfgsfg</h2>
-          <div class="flex"><div class="line"></div> </div>
-          <p>Lorem ipsum dolor sit amet. Proin gravida nibh vel velit auctor aliquet.</p>
+                </ul>
+
+
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div>
+
+                            <h2>For one day  <span id="tomorrow"></span> </h2>
+
+
+
+
+                            <table class="table table-bordered table-dark">
+                                <thead>
+                                <tr>
+                                    <th id="column"     scope="col">Time</th>
+                                    <th id="column-0-0" scope="col"></th>
+                                    <th id="column-0-1" scope="col"></th>
+                                    <th id="column-0-2" scope="col"></th>
+                                    <th id="column-0-3" scope="col"></th>
+
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th id="column"     scope="row">symbol</th>
+                                    <td id="column-1-0" scope="col"></td>
+                                    <td id="column-1-1" scope="col"></td>
+                                    <td id="column-1-2" scope="col"></td>
+                                    <td id="column-1-3" scope="col"></td>
+
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">precipitation</th>
+                                    <td id="column-2-0" scope="col"></td>
+                                    <td id="column-2-1" scope="col"></td>
+                                    <td id="column-2-2" scope="col"></td>
+                                    <td id="column-2-3" scope="col"></td>
+
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">windDirection </th>
+                                    <td id="column-3-0" scope="col"></td>
+                                    <td id="column-3-1" scope="col"></td>
+                                    <td id="column-3-2" scope="col"></td>
+                                    <td id="column-3-3" scope="col"></td>
+
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">windSpeed </th>
+                                    <td id="column-4-0" scope="col"></td>
+                                    <td id="column-4-1" scope="col"></td>
+                                    <td id="column-4-2" scope="col"></td>
+                                    <td id="column-4-3" scope="col"></td>
+
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">temperature, *C </th>
+                                    <td id="column-5-0" scope="col"></td>
+                                    <td id="column-5-1" scope="col"></td>
+                                    <td id="column-5-2" scope="col"></td>
+                                    <td id="column-5-3" scope="col"></td>
+
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">pressure, hPa</th>
+                                    <td id="column-6-0" scope="col"></td>
+                                    <td id="column-6-1" scope="col"></td>
+                                    <td id="column-6-2" scope="col"></td>
+                                    <td id="column-6-3" scope="col"></td>
+
+
+                                </tr>
+                                <tr>
+                                    <th id="row">humidity, %</th>
+                                    <td id="column-7-0" scope="col"></td>
+                                    <td id="column-7-1" scope="col"></td>
+                                    <td id="column-7-2" scope="col"></td>
+                                    <td id="column-7-3" scope="col"></td>
+
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">clouds </th>
+                                    <td id="column-8-0" scope="col"></td>
+                                    <td id="column-8-1" scope="col"></td>
+                                    <td id="column-8-2" scope="col"></td>
+                                    <td id="column-8-3" scope="col"></td>
+
+
+                                </tr>
+
+
+
+                                </tbody>
+                            </table>
+
+
+
+                            <div id="demo">
+                                <h2>Let AJAX change this text</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        whether for 5 days
+
+                    </div>
+
+                </div>
+            </div>
+
+            </p>
         </div>
-        <div class="flex-container-wrap col">
-          <div class="flex-block">
-           <img src="img/camera.png" alt="camera">
-           <h3>Lorem Ipsum</h3>
-           <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,</p>
-           
-           <a href="#" class="sm_btn">Learn more</a>
-           
-         </div>
-         <div class="flex-block">
-           <img src="img/tablo.png" alt="camera">
-           <h3>Lorem Ipsum</h3>
-           <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,</p>
-           <a href="#" class="sm_btn">Learn more</a>
-           
-         </div>
-         <div class="flex-block">
-           <img src="img/case.png" alt="camera">
-           <h3>Lorem Ipsum</h3>
-           <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,</p>
-           
-           <a href="#" class="sm_btn">Learn more</a>
-           
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
- <!-- -->	
 
- <div class="latest_work clearfix">
-   <div class="container"> 
-    <div class="ahead "> 
-      <h2>OUR LATEST WORK</h2>
-      <div class="flex"><div class="line"></div> </div>
-      <p>Lorem ipsum dolor sit amet. Proin gravida nibh vel velit auctor aliquet.</p>
     </div>
-    <div class="flex">
-      <a class="photography active" href="#" >Photography</a>
-      <a href="#" class="design">Design</a>
-      <a href="#" class="print">Print</a>
-    </div>
-    <div class="flex-container-wrap">
-      <img src="img/evergladestrees.jpg" alt="evergladestrees">
-      <img src="img/workplace.jpg" alt="workplace">
-      <img src="img/cake.jpg" alt="cake">
-      <img src="img/cat.jpg" alt="cat">
-      <img src="img/notebook.jpg" alt="notebook">
-      <img src="img/cola.jpg" alt="cola">
-      <img src="img/coffee.jpg" alt="coffee">
-      <img src="img/wood.jpg" alt="wood">
-      <img src="img/ladybird.jpg" alt="ladybird.jpg">
-      <img src="img/green.png" alt="green">
-    </div>
-    <div class="flex"><a href="#" class="more_work">View more work  &#8594;</a> </div>
-  </div> 
-</div>
-<!-- -->    
-
-<div id="testimonial" class="clearfix carousel">
-  <div class="container">
-   <div class="ahead "> 
-    <h2>TESTIMONIALS</h2>
-    <div class="flex"><div class="line"></div> </div>
-    <p>Lorem ipsum dolor sit amet. Proin gravida nibh vel velit auctor aliquet.</p>
-  </div>
-  <p class="flex">“Awalnya saya tidak menderita penyakit apapun,<br>
-   namun setelah saya tidak berobat ke klinik tongfang, saya dinyatakan<br>
-   tidak menderita penyakit apapun!”</p>
-   <div class="flex">
-     <img src="img/face.png" alt="face">
-     <span>Mr. Herp</span>
-     <span>CEO of Meme, Inc.</span>
-   </div>
- </div>
-</div>
-<!-- -->
-<div class="clients clearfix">
-  <div class="container">
-   <div class="ahead "> 
-    <h2>OUR HAPPY CLIENT</h2>
-    <div class="flex"><div class="line"></div> </div>
-    <p>Lorem ipsum dolor sit amet. Proin gravida nibh vel velit auctor aliquet.</p>
-  </div>
-  <div class="flex-container-wrap">
-    <img src="img/google-logo.png" alt="google">
-    <img src="img/yahoo-logo.png" alt="yahoo">
-    <img src="img/msft-logo.png" alt="msft">
-    <img src="img/intel-logo.png" alt="cat">
-    <img src="img/qualcomm-logo.png" alt="notebook">
-    <img src="img/cisco-logo.png" alt="cola">
-    <img src="img/apple-logo.png" alt="coffee">
-    <img src="img/asus-logo.png" alt="wood">
-  </div>
-  <div class="flex"><a href="#" class="all_clients">See all clients  &#8594;</a>	
-  </div>
-</div>
-</div>
-<!-- -->
-<div id="service" class="team clearfix">
- <div class="container">
-  <div class="ahead "> 
-    <h2>MEET THE TEAM</h2>
-    <div class="flex"><div class="line"></div> </div>
-    <p>Lorem ipsum dolor sit amet. Proin gravida nibh vel velit auctor aliquet.</p>
-  </div>
-  <div class="flex-container-wrap">
-    <div class="item">
-      <div class="user_photo">
-        <div class="user_photo_inner">
-         <img src="img/den.png" alt="den">
-       </div>
-     </div>
-     <h5 class="user_name">Krisna Wijaya</h5>
-     <div class="flex">	
-       <div class="flex-container">
-        <a href="#"><img src="img/drib.png" alt= "drib"></a>
-        <a href="#"><img src="img/be.png" alt= "be"></a>
-        <a href="#"><img src="img/tw.png" alt= "tw"></a>
-      </div>
-    </div>	
-  </div>
-  <div class="item">
-    <div class="user_photo">
-      <div class="user_photo_inner">
-        <img src="img/bill.png" alt="bill">
-      </div>
-    </div>
-    <h5 class="user_name">Gabriel Yoshua</h5>
-    <div class="flex">
-     <div class="flex-container">
-      <a href="#"><img src="img/drib.png" alt= "drib"></a>
-      <a href="#"><img src="img/be.png" alt= "be"></a>
-      <a href="#"><img src="img/tw.png" alt= "tw"></a>
-    </div>
-  </div>
-</div>
-<div>
-  
-  <div class="user_photo">
-    <div class="user_photo_inner">
-      <img src="img/alex.png" alt="alex">
-    </div>
-  </div>
-  
-  <h5 class="user_name">Adik N.K.L</h5>
-  <div class="flex">
-   <div class="flex-container">
-    <a href="#"><img src="img/drib.png" alt= "drib"></a>
-    <a href="#"><img src="img/be.png" alt= "be"></a>
-    <a href="#"><img src="img/tw.png" alt= "tw"></a>
-  </div>
-</div>
-</div>
-<div class="item">
-  <div class="user_photo">
-    <div class="user_photo_inner">
-      <img src="img/jorg.png" alt="jorg">
-    </div>
-  </div>
-  <h5 class="user_name">Zan D.J</h5>
-  <div class="flex">
-   <div class="flex-container">
-    <a href="#"><img src="img/drib.png" alt= "drib"></a>
-    <a href="#"><img src="img/be.png" alt= "be"></a>
-    <a href="#"><img src="img/tw.png" alt= "tw"></a>
-  </div>
-</div>
-</div>
-<div class="item">
-  <div class="user_photo">
-    <div class="user_photo_inner">
-      <img src="img/will.png" alt="google">
-    </div>
-  </div>
-  <h5 class="user_name">Faizal Febri</h5>
-  <div class="flex">
-    <div class="flex-container">
-     <a href="#"><img src="img/drib.png" alt= "drib"></a>
-     <a href="#"><img src="img/be.png" alt= "be"></a>
-     <a href="#"><img src="img/tw.png" alt= "tw"></a>
-   </div>
- </div>
-</div>
-</div>
-</div>
-<div class="flex back"><a href="#" class="work">WORK WITH US</a></div>
-
-</div>
-<!-- -->
-
-<div id="contact">
-  <div class="container flex-container-wrap-sm">
-    <div class="about colunm">
-      <div class="ahead_sm"> 
-        <h4>ABOUT US</h4>
-        <div class="flex"><div class="line_sm"></div> </div>
-      </div>
-      <p> This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Ut aliquam massa nisl quis neque. Suspendisse in orci enim.Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-    </div>
-    <div class="posts colunm">
-      <div class="ahead_sm"> 
-        <h4>RECENT POSTS</h4>
-        <div class="flex">
-         <div class="line_sm"></div> 
-       </div>
-     </div>
-     <div class="clearfix">
-       <img src="img/cola_sm.jpg" alt="cola">
-       <span>Lorem Ipsum Dolor Sit Amet.</span> <br>
-       <a href="#" class="sml_btn magazine">MAGAZINE</a>
-     </div>
-     <div class="clearfix">
-       <img src="img/coffee_sm.jpg" alt="coffee">
-       <span>Lorem Ipsum Dolor Sit Amet.</span> <br>
-       <a href="#" class="sml_btn design">UI DESIGN</a>
-     </div>
-     <div class="clearfix">
-       <img src="img/wood_sm.jpg" alt="wood">
-       <span>Lorem Ipsum Dolor Sit Amet.</span> <br>
-       <a href="#" class="sml_btn photograhy">PHOTOGRAPHY</a>
-     </div>
-     <div class="clearfix">
-       <img src="img/green_sm.jpg" alt="green">
-       <span>Lorem Ipsum Dolor Sit Amet.</span> <br>
-       <a href="#" class="sml_btn book">BOOK</a>
-     </div >
-     <div class="clearfix">
-       <img src="img/ledybird_sm.jpg" alt="ladybird">
-       <span>Lorem Ipsum Dolor Sit Amet.</span> <br>
-       <a href="#" class="sml_btn design">UI DESIGN</a>
-     </div>
-   </div>
-   <div class="about about colunm">
-    <div class="ahead_sm"> 
-      <h4>CONTACT US</h4>
-      <div class="flex"><div class="line_sm"></div> </div>
-    </div>
-    <p> 10044 West 23th Street, Suite 721</p>
-    <p>New York NY 10010</p>	
-    <p>Email: Username@email.com</p> 
-    <p>Phone: +1 (0) 123 4567 890</p> 
-    <p>Fax: +1 (0) 321 4567 890</p>
-    
-    
-    
-    <form >
-     <div class="container-1">
-      <input type="text" class="text" id="name" placeholder="Your Name..">
-    </div>
-    <div class="container-1">
-      <input type="email" class="text" id="email" placeholder="Your Email..">
-    </div>
-    <div class="container-1">
-      <textarea  class="text textarea" placeholder="Your message"></textarea>
-    </div>
-    <div class="container-1">
-      <input type="submit" class="button" value="Send">
-    </div>
-  </form> 
-</div>
-</div>
-</div>
-<div class="as_see">
-  <div class="container">    
-    <div class="ahead_sm"> 
-      <h4>AS SEEN ON</h4>
-      <div class="flex">
-       <div class="line_sm"></div> 
-     </div>
-   </div>
-   <div class="flex-container-wrap">
-     <img src="img/cnn.png" alt="cnn">
-     <img src="img/techc.png" alt="techc">
-     <img src="img/bbc.png" alt="bbc">
-     <img src="img/tnyt.png" alt="tnyt">
-
-   </div>
- </div>
-</div>
-</div>
-</div><!-- .content -->
-<div>
-	<p>asdf</p>
-	<p>asdf</p>
-</div>
-</div><!-- .wrapper -->
 
 
-
-
-
-
-
-
-
-<footer class="footer">
-	<span>made with   &#9829;   by Krisna :) </span>
-</footer><!-- .footer -->
 
 
 	<!-- Javascript
 	================================================== -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 
 	<!-- Connecting jQuery library from CDN -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<!-- If CDN unavailable - connect local copy of jQuery -->
 	<script>window.jQuery || document.write('<script src="js/jquery/jquery.min.js"><\/script>')</script>
 	<!-- Plugins goes here -->
-	<script src="js/build.min.js"></script>
+
   <script src="js/js.js"></script>
 
 	<!-- End Document
