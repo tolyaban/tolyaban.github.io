@@ -4,7 +4,7 @@ var tdate= new Date();
 tdate.setTime(tdate.getTime()+1000*60*60*24);
 
 //var urlString ="http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
-var urlString ="http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&mode=xml"+"&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
+var urlString ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&mode=xml"+"&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
 
 document.getElementById("city").onkeypress =function (ev) {
     if (ev.keyCode==13) {
@@ -20,7 +20,7 @@ function  loadWeather() {
         alert("Input town");
     }
   //  urlString ="http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
-    urlString ="http://api.openweathermap.org/data/2.5/forecast?q="+city+"&mode=xml"+"&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
+    urlString ="https://api.openweathermap.org/data/2.5/forecast?q="+city+"&mode=xml"+"&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
 
 // --------------------------------------------XHR------------------------------------------------------------//
 
