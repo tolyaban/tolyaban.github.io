@@ -1,38 +1,43 @@
-
+var navCity;
 var city;
 var tdate= new Date();
 tdate.setTime(tdate.getTime()+1000*60*60*24);
-
+var lat;
+var lon;
 
 //var urlString ="https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
 
-var urlString ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&mode=xml"+"&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
+var urlString;
+
+navigator.geolocation.getCurrentPosition(function (position) {
+    var lat = "lat=" + Math.round(position.coords.latitude);
+    var lon = "lon=" + Math.round(position.coords.longitude);
+    urlString ="https://api.openweathermap.org/data/2.5/forecast?" + lat + "&" + lon + "&mode=xml"+"&APPID=649ebf87a3e5c9d049e3eb54e4524e08"
+    loadWeather();
+    
+    
+});
 
 document.getElementById("city").onkeypress =function (ev) {
     if (ev.keyCode==13) {
-        loadWeather();
+		 city = document.getElementById("city").value;
+           if (city === "") {
+        alert("Input town");
+    }else{
+        urlString ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&mode=xml"+"&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
+        loadWeather(); } 
     }
-
 }
 
 function  loadWeather() {
-    city = document.getElementById("city").value;
-    document.getElementById("cityweather").innerText = "Weather in " + city;
-    if (city === "") {
-        alert("Input town");
-    }
-
-  //  urlString ="https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
-
-    urlString ="https://api.openweathermap.org/data/2.5/forecast?q="+city+"&mode=xml"+"&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
-
-// --------------------------------------------XHR------------------------------------------------------------//
-
+   console.log(urlString);
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        var j =0;
+    var j =0;
     if (xhr.readyState == 4 && xhr.status == 200) {
         var weatherData = xhr.responseXML;
+        navCity = weatherData.getElementsByTagName('name')[0].innerHTML;
+         document.getElementById("cityweather").innerText = "Weather in " + navCity;
         for (var i=0; i<8; i +=2){
             var d0 = "column-0-" + j;
             var d1 = "column-1-" + j;
@@ -44,11 +49,13 @@ function  loadWeather() {
             var d7 = "column-7-" + j;
             var d8 = "column-8-" + j;
             j +=1;
-        document.getElementById(d0).innerText = "From " + weatherData.getElementsByTagName('time')[i].getAttribute("from") + " to " +weatherData.getElementsByTagName('time')[i].getAttribute("to");
+        var curentTime =   weatherData.getElementsByTagName('time')[i].getAttribute("from");
+        ;
+        document.getElementById(d0).innerText = (+(curentTime[11] + curentTime[12])+2) + ":00";
         var begin = '<img src="http://openweathermap.org/img/w/';
-        var end = '.png" alt="">';
+        var end = '.png" alt="">'
         document.getElementById(d1).innerHTML = begin+  weatherData.getElementsByTagName('symbol')[i].getAttribute("var")+ end ;
-        document.getElementById(d2).innerText = weatherData.getElementsByTagName('precipitation')[i].getAttribute("value");
+        //document.getElementById(d2).innerText = weatherData.getElementsByTagName('precipitation')[i].getAttribute("value");
         document.getElementById(d3).innerText = weatherData.getElementsByTagName('windDirection')[i].getAttribute("name");
         document.getElementById(d4).innerText = weatherData.getElementsByTagName('windSpeed')[i].getAttribute("name");
         document.getElementById(d5).innerText = Math.round(weatherData.getElementsByTagName('temperature')[i].getAttribute("value") - 273) ;
@@ -72,11 +79,11 @@ function  loadWeather() {
             j +=1;
             var begin = '<img src="http://openweathermap.org/img/w/';
             var end = '.png" alt="">';
-            document.getElementById(d1).innerHTML = begin+  weatherData.getElementsByTagName('symbol')[i].getAttribute("var")+ end ;
-            document.getElementById(d0).innerText = "From " + weatherData.getElementsByTagName('time')[i].getAttribute("from") + " to " +weatherData.getElementsByTagName('time')[i].getAttribute("to");
+            
+            document.getElementById(d1).innerHTML =begin +  weatherData.getElementsByTagName('symbol')[i].getAttribute("var")+ end ;
+            var dateTime = weatherData.getElementsByTagName('time')[i].getAttribute("from").slice(0,10) +"\n" + ( + (weatherData.getElementsByTagName('time')[i].getAttribute("from").slice(11,12))+2)+ ":00";
+            document.getElementById(d0).innerText =dateTime  /*"From " + weatherData.getElementsByTagName('time')[i].getAttribute("from") + " to " +weatherData.getElementsByTagName('time')[i].getAttribute("to")*/;
 
-            //document.getElementById(d1).innerText = weatherData.getElementsByTagName('symbol')[i].getAttribute("name");
-            document.getElementById(d2).innerText = weatherData.getElementsByTagName('precipitation')[i].getAttribute("value");
             document.getElementById(d3).innerText = weatherData.getElementsByTagName('windDirection')[i].getAttribute("name");
             document.getElementById(d4).innerText = weatherData.getElementsByTagName('windSpeed')[i].getAttribute("name");
             document.getElementById(d5).innerText = Math.round(weatherData.getElementsByTagName('temperature')[i].getAttribute("value") - 273) ;
@@ -85,14 +92,7 @@ function  loadWeather() {
             document.getElementById(d7).innerText = weatherData.getElementsByTagName('humidity')[i].getAttribute("value");
             document.getElementById(d8).innerText = weatherData.getElementsByTagName('clouds')[i].getAttribute("value");
         }
-
-    //    var weatherDataHour = clientData.getElementsByTagName('symbol')[0].childNodes[0].nodeValue;
-
-    //    document.getElementById('col-0-1').innerHTML =clientData.getElementsByTagName('NAME')[0].childNodes[0].nodeValue;
-    //    document.getElementById('clientAddress').innerHTML =
-    //    clientData.getElementsByTagName('ADDRESS')[0].childNodes[0].nodeValue;
-        }
-
+      }
     }
     xhr.open('GET', urlString, true);
     xhr.send();
@@ -108,9 +108,7 @@ function  loadWeather() {
           //  document.getElementById("temperature").innerHTML = obj.main.temp - 273) ;
           //  document.getElementById("weather").innerHTML = obj.weather[0].description;
             console.log(this.responseText);
-
         }
-
     };
     xhttp.open("GET", urlString, true);
     xhttp.send();
