@@ -51,7 +51,7 @@ function  loadWeather() {
             j +=1;
         var curentTime =   weatherData.getElementsByTagName('time')[i].getAttribute("from");
         ;
-        document.getElementById(d0).innerText = (+(curentTime[11] + curentTime[12])+2) + ":00";
+        document.getElementById(d0).innerText = (+weatherData.getElementsByTagName('time')[i].getAttribute("from").slice(11,13)+2) + ":00";
         var begin = '<img src="http://openweathermap.org/img/w/';
         var end = '.png" alt="">'
         document.getElementById(d1).innerHTML = begin+  weatherData.getElementsByTagName('symbol')[i].getAttribute("var")+ end ;
@@ -65,32 +65,38 @@ function  loadWeather() {
         document.getElementById(d8).innerText = weatherData.getElementsByTagName('clouds')[i].getAttribute("value");
         }
         j=0;
+
    //-----------------------------5days------------------------------------------------------
-        for (var i=0; i<44; i +=8){
-            var d0 = "col5Day-0-" + j;
-            var d1 = "col5Day-1-" + j;
-            var d2 = "col5Day-2-" + j;
-            var d3 = "col5Day-3-" + j;
-            var d4 = "col5Day-4-" + j;
-            var d5 = "col5Day-5-" + j;
-            var d6 = "col5Day-6-" + j;
-            var d7 = "col5Day-7-" + j;
-            var d8 = "col5Day-8-" + j;
-            j +=1;
-            var begin = '<img src="http://openweathermap.org/img/w/';
-            var end = '.png" alt="">';
-            
-            document.getElementById(d1).innerHTML =begin +  weatherData.getElementsByTagName('symbol')[i].getAttribute("var")+ end ;
-            var dateTime = weatherData.getElementsByTagName('time')[i].getAttribute("from").slice(0,10) +"\n" + ( + (weatherData.getElementsByTagName('time')[i].getAttribute("from").slice(11,12))+2)+ ":00";
-            document.getElementById(d0).innerText =dateTime  /*"From " + weatherData.getElementsByTagName('time')[i].getAttribute("from") + " to " +weatherData.getElementsByTagName('time')[i].getAttribute("to")*/;
+        
+        for (var i=0; i<40; i++){ //i<44; i +=8
+            var dayTime =  weatherData.getElementsByTagName('time')[i].getAttribute("from").slice(11,13);
+            console.log(dayTime);
+            if (dayTime == 12){
+                var d0 = "col5Day-0-" + j;
+                var d1 = "col5Day-1-" + j;
+                var d2 = "col5Day-2-" + j;
+                var d3 = "col5Day-3-" + j;
+                var d4 = "col5Day-4-" + j;
+                var d5 = "col5Day-5-" + j;
+                var d6 = "col5Day-6-" + j;
+                var d7 = "col5Day-7-" + j;
+                var d8 = "col5Day-8-" + j;
+                j +=1;
+                var begin = '<img src="http://openweathermap.org/img/w/';
+                var end = '.png" alt="">';
+                
+                document.getElementById(d1).innerHTML =begin +  weatherData.getElementsByTagName('symbol')[i].getAttribute("var")+ end ;
+                var dateTime = weatherData.getElementsByTagName('time')[i].getAttribute("from").slice(0,10) +"\n" + ((+dayTime)+2)+ ":00";
+                document.getElementById(d0).innerText =dateTime  /*"From " + weatherData.getElementsByTagName('time')[i].getAttribute("from") + " to " +weatherData.getElementsByTagName('time')[i].getAttribute("to")*/;
 
-            document.getElementById(d3).innerText = weatherData.getElementsByTagName('windDirection')[i].getAttribute("name");
-            document.getElementById(d4).innerText = weatherData.getElementsByTagName('windSpeed')[i].getAttribute("name");
-            document.getElementById(d5).innerText = Math.round(weatherData.getElementsByTagName('temperature')[i].getAttribute("value") - 273) ;
+                document.getElementById(d3).innerText = weatherData.getElementsByTagName('windDirection')[i].getAttribute("name");
+                document.getElementById(d4).innerText = weatherData.getElementsByTagName('windSpeed')[i].getAttribute("name");
+                document.getElementById(d5).innerText = Math.round(weatherData.getElementsByTagName('temperature')[i].getAttribute("value") - 273) ;
 
-            document.getElementById(d6).innerText = weatherData.getElementsByTagName('pressure')[i].getAttribute("value");
-            document.getElementById(d7).innerText = weatherData.getElementsByTagName('humidity')[i].getAttribute("value");
-            document.getElementById(d8).innerText = weatherData.getElementsByTagName('clouds')[i].getAttribute("value");
+                document.getElementById(d6).innerText = weatherData.getElementsByTagName('pressure')[i].getAttribute("value");
+                document.getElementById(d7).innerText = weatherData.getElementsByTagName('humidity')[i].getAttribute("value");
+                document.getElementById(d8).innerText = weatherData.getElementsByTagName('clouds')[i].getAttribute("value");
+            }    
         }
       }
     }
