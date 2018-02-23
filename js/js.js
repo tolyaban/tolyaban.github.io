@@ -30,7 +30,6 @@ function  loadWeather() {
     if (xhr.readyState == 4 && xhr.status == 200) {
         var weatherData = xhr.responseXML;
         for (var i=0; i<8; i +=2){
-
             var d0 = "column-0-" + j;
             var d1 = "column-1-" + j;
             var d2 = "column-2-" + j;
@@ -42,8 +41,9 @@ function  loadWeather() {
             var d8 = "column-8-" + j;
             j +=1;
         document.getElementById(d0).innerText = "From " + weatherData.getElementsByTagName('time')[i].getAttribute("from") + " to " +weatherData.getElementsByTagName('time')[i].getAttribute("to");
-
-        document.getElementById(d1).innerText = weatherData.getElementsByTagName('symbol')[i].getAttribute("name");
+        var begin = '<img src="http://openweathermap.org/img/w/';
+        var end = '.png" alt="">';
+        document.getElementById(d1).innerHTML = begin+  weatherData.getElementsByTagName('symbol')[i].getAttribute("var")+ end ;
         document.getElementById(d2).innerText = weatherData.getElementsByTagName('precipitation')[i].getAttribute("value");
         document.getElementById(d3).innerText = weatherData.getElementsByTagName('windDirection')[i].getAttribute("name");
         document.getElementById(d4).innerText = weatherData.getElementsByTagName('windSpeed')[i].getAttribute("name");
@@ -53,6 +53,35 @@ function  loadWeather() {
         document.getElementById(d7).innerText = weatherData.getElementsByTagName('humidity')[i].getAttribute("value");
         document.getElementById(d8).innerText = weatherData.getElementsByTagName('clouds')[i].getAttribute("value");
         }
+        j=0;
+   //-----------------------------5days------------------------------------------------------
+        for (var i=0; i<44; i +=8){
+            var d0 = "col5Day-0-" + j;
+            var d1 = "col5Day-1-" + j;
+            var d2 = "col5Day-2-" + j;
+            var d3 = "col5Day-3-" + j;
+            var d4 = "col5Day-4-" + j;
+            var d5 = "col5Day-5-" + j;
+            var d6 = "col5Day-6-" + j;
+            var d7 = "col5Day-7-" + j;
+            var d8 = "col5Day-8-" + j;
+            j +=1;
+            var begin = '<img src="http://openweathermap.org/img/w/';
+            var end = '.png" alt="">';
+            document.getElementById(d1).innerHTML = begin+  weatherData.getElementsByTagName('symbol')[i].getAttribute("var")+ end ;
+            document.getElementById(d0).innerText = "From " + weatherData.getElementsByTagName('time')[i].getAttribute("from") + " to " +weatherData.getElementsByTagName('time')[i].getAttribute("to");
+
+            //document.getElementById(d1).innerText = weatherData.getElementsByTagName('symbol')[i].getAttribute("name");
+            document.getElementById(d2).innerText = weatherData.getElementsByTagName('precipitation')[i].getAttribute("value");
+            document.getElementById(d3).innerText = weatherData.getElementsByTagName('windDirection')[i].getAttribute("name");
+            document.getElementById(d4).innerText = weatherData.getElementsByTagName('windSpeed')[i].getAttribute("name");
+            document.getElementById(d5).innerText = Math.round(weatherData.getElementsByTagName('temperature')[i].getAttribute("value") - 273) ;
+
+            document.getElementById(d6).innerText = weatherData.getElementsByTagName('pressure')[i].getAttribute("value");
+            document.getElementById(d7).innerText = weatherData.getElementsByTagName('humidity')[i].getAttribute("value");
+            document.getElementById(d8).innerText = weatherData.getElementsByTagName('clouds')[i].getAttribute("value");
+        }
+
     //    var weatherDataHour = clientData.getElementsByTagName('symbol')[0].childNodes[0].nodeValue;
 
     //    document.getElementById('col-0-1').innerHTML =clientData.getElementsByTagName('NAME')[0].childNodes[0].nodeValue;
