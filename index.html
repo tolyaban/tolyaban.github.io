@@ -11,9 +11,9 @@
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   	 <!-- Fonts
     ================================================== -->
-    <link href="fonts/ProximaNovaBold" rel="stylesheet"> 
-    <link href="fonts/ProximaNovaRegular" rel="stylesheet">
-    <link href="fonts/Nautilus" rel="stylesheet">
+   
+    
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Site title
@@ -139,7 +139,7 @@
 
                                 </tr>
                                 <tr>
-                                    <th id="row">humidity, %</th>
+                                    <th scope="row">humidity, %</th>
                                     <td id="column-7-0" scope="col"></td>
                                     <td id="column-7-1" scope="col"></td>
                                     <td id="column-7-2" scope="col"></td>
@@ -147,7 +147,7 @@
 
 
                                 </tr>
-                               
+
 
 
 
@@ -248,12 +248,70 @@
                                 <td id="col5Day-7-4" scope="col"></td>
 
                             </tr>
-                           
 
+                             <tr>
+                                 <th scope="row">Temperure line</th>
+                                 <td  colspan="5">
+                                     <svg viewBox="0 0 320 100" class="chart">
+                                         <!--	<text  x="5" y="80"  style="text-anchor: start;"> 0 </text>-->
+                                         <g id ="temperatures" fill="black" font-family="Verdana, serif" font-size="10" font-weight="600">
+
+                                             <text id="tempr-1" x="20" y="90"  style="text-anchor: middle;"> -7 </text>
+                                             <text id="tempr-2" x="90" y="90"  style="text-anchor: middle;"> -7 </text>
+                                             <text id="tempr-3"  x="160" y="90"  style="text-anchor: middle;"> -7 </text>
+                                             <text id="tempr-4"  x="230" y="90"  style="text-anchor: middle;"> -7 </text>
+                                             <text id="tempr-5" x="300" y="90"  style="text-anchor: middle;"> -7 </text>
+                                         </g>
+
+                                         <g id ="dates" fill="black" font-family="Verdana, serif" font-size="6" font-weight="400">
+                                             <text id="day-1"x="20" y="100" fill="#333"  style="text-anchor: Middle; color:red;"> 28.04 </text>
+                                             <text id="day-2" x="90" y="100" fill="#333" style="text-anchor: Middle;"> 28.03 </text>
+                                             <text id="day-3" x="160" y="100" fill="#333"  style="text-anchor: Middle;"> 28.03 </text>
+                                             <text id="day-4" x="230" y="100" fill="#333"  style="text-anchor: Middle;"> 28.03 </text>
+                                             <text id="day-5" x="300" y="100" fill="#333" style="text-anchor: Middle;"> 28.03 </text>
+                                         </g>
+
+                                         <!--	<polyline
+                                                  fill="none"
+                                                  stroke="red"
+                                                  stroke-width="2"
+                                                  points="
+                                                    15, 75
+                                                    310, 75
+                                             "/>
+
+                                             <polyline
+                                                 fill="none"
+                                                 stroke="green"
+                                                 stroke-width="2"
+                                                 points="
+                                                 15, 5
+                                                 310, 5
+                                              "/> -->
+
+
+                                         <polyline id="tempr-line"
+                                                   fill="none"
+                                                   stroke="#0074d9"
+                                                   stroke-width="4"
+                                                   points="
+							    20,50 90,80 160,20 230,0 300,80
+							    "
+                                         />
+
+                                     </svg>
+
+                                 </td>
+
+
+
+                             </tr>
 
 
                             </tbody>
                         </table>
+
+
 
                     </div>
 
