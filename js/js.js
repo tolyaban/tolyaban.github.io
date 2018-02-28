@@ -1,17 +1,20 @@
 var navCity;
 var city;
-var tdate= new Date();
-tdate.setTime(tdate.getTime()+1000*60*60*24);
 var lat;
 var lon;
+var temprArray =[];
+var dateArray= [];
+
+    
+
 
 //var urlString ="https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=649ebf87a3e5c9d049e3eb54e4524e08";
 
 var urlString;
 
 navigator.geolocation.getCurrentPosition(function (position) {
-    var lat = "lat=" + Math.round(position.coords.latitude);
-    var lon = "lon=" + Math.round(position.coords.longitude);
+    var lat = "lat=" + (+position.coords.latitude).toFixed(2);
+    var lon = "lon=" + (+ position.coords.longitude).toFixed(2);
     urlString ="https://api.openweathermap.org/data/2.5/forecast?" + lat + "&" + lon + "&mode=xml"+"&APPID=649ebf87a3e5c9d049e3eb54e4524e08"
     loadWeather();
     
@@ -30,7 +33,7 @@ document.getElementById("city").onkeypress =function (ev) {
 }
 
 function  loadWeather() {
-   console.log(urlString);
+
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
     var j =0;
@@ -70,7 +73,7 @@ function  loadWeather() {
         
         for (var i=0; i<40; i++){ //i<44; i +=8
             var dayTime =  weatherData.getElementsByTagName('time')[i].getAttribute("from").slice(11,13);
-            console.log(dayTime);
+            
             if (dayTime == 12){
                 var d0 = "col5Day-0-" + j;
                 var d1 = "col5Day-1-" + j;
@@ -81,23 +84,60 @@ function  loadWeather() {
                 var d6 = "col5Day-6-" + j;
                 var d7 = "col5Day-7-" + j;
                 var d8 = "col5Day-8-" + j;
-                j +=1;
+                
                 var begin = '<img src="http://openweathermap.org/img/w/';
                 var end = '.png" alt="">';
                 
                 document.getElementById(d1).innerHTML =begin +  weatherData.getElementsByTagName('symbol')[i].getAttribute("var")+ end ;
                 var dateTime = weatherData.getElementsByTagName('time')[i].getAttribute("from").slice(0,10) +"\n" + ((+dayTime)+2)+ ":00";
                 document.getElementById(d0).innerText =dateTime  /*"From " + weatherData.getElementsByTagName('time')[i].getAttribute("from") + " to " +weatherData.getElementsByTagName('time')[i].getAttribute("to")*/;
-
+                dateArray[j] = dateTime;
                 document.getElementById(d3).innerText = weatherData.getElementsByTagName('windDirection')[i].getAttribute("name");
+
                 document.getElementById(d4).innerText = weatherData.getElementsByTagName('windSpeed')[i].getAttribute("name");
                 document.getElementById(d5).innerText = Math.round(weatherData.getElementsByTagName('temperature')[i].getAttribute("value") - 273) ;
-
+                temprArray[j] = Math.round(weatherData.getElementsByTagName('temperature')[i].getAttribute("value") - 273);
+                
                 document.getElementById(d6).innerText = weatherData.getElementsByTagName('pressure')[i].getAttribute("value");
                 document.getElementById(d7).innerText = weatherData.getElementsByTagName('humidity')[i].getAttribute("value");
                 document.getElementById(d8).innerText = weatherData.getElementsByTagName('clouds')[i].getAttribute("value");
+                j +=1;
             }    
+
         }
+
+        var maxTempr = temprArray[0];
+        
+        var minTempr = temprArray[0];
+        
+
+        for (i=0; i<temprArray.length; i++){
+           if (maxTempr< temprArray[i]) {
+            maxTempr = temprArray[i];
+           }
+           if (minTempr> temprArray[i]) {
+            minTempr = temprArray[i];
+           }
+        }
+       // -------------------------------------SVG---------------------------------------------------------//
+        for (i = 0; i< dateArray.length; i++){
+
+
+            var id = "day-"+ (i+1);
+            var idt= "tempr-" + (i+1);
+
+            document.getElementById(id).innerHTML = dateArray[i].slice(0,11);
+            document.getElementById(idt).innerHTML = temprArray[i];
+
+        }
+        function convert(tempr) {
+           var t = -(tempr - minTempr)*70/(maxTempr-minTempr)+5+70;
+           return t;
+        };
+
+        var line =  "20,"+convert(temprArray[0])+" 90,"+convert(temprArray[1])+" 160,"+convert(temprArray[2])+" 230,"+convert(temprArray[3])+" 300,"+convert(temprArray[4]);
+        document.getElementById("tempr-line").setAttribute("points", line);
+
       }
     }
     xhr.open('GET', urlString, true);
