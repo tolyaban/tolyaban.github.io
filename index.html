@@ -6,7 +6,7 @@
 	<title>study</title>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
-	<link href="css/style.css" rel="stylesheet">
+	
 	<meta name="viewport" content="width=device-width">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   	 <!-- Fonts
@@ -16,6 +16,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
     <!-- Site title
     ================================================== -->
     
@@ -27,12 +28,13 @@
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-4">Wellcome to weather forecast </h1>
+
             <!--    ==================================================== -->
             <div class="row">
 
                 <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="text" id="city" class="form-control"  placeholder="Input your town..  ">
+                    <div class="input-group" data-toggle="popover" data-trigger="focus" title="Press 'enter' ater input" data-content="And here's some amazing content. It's very engaging. Right?">
+                        <input type="text" id="city" class="form-control"  placeholder="Input your town..  " data-content="Press enter">
                        <!-- <span class="input-group-btn">
                             <button class="btn btn-secondary" onclick="loadWeather()" type="button">Serch</button>
                         </span> -->
@@ -160,7 +162,10 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <h2>Whether for 5 days</h2>
+                      <button onclick="on()">Show infografic</button>
+                        <h2>Whether for 5 days</h2> 
+                        
+
                         <table class="table table-bordered table-dark">
                             <thead>
                             <tr>
@@ -252,8 +257,33 @@
                              <tr>
                                  <th scope="row">Temperure line</th>
                                  <td  colspan="5">
-                                     <svg viewBox="0 0 320 100" class="chart">
-                                         <!--	<text  x="5" y="80"  style="text-anchor: start;"> 0 </text>-->
+                                     
+                                 </td>
+
+
+
+                             </tr>
+
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            </p>
+        </div>
+
+    </div>
+
+<div id="overlay" onclick="off()">
+  <div id="text">
+    <svg viewBox="0 0 320 100" class="chart">
+                                         <!-- <text  x="5" y="80"  style="text-anchor: start;"> 0 </text>-->
                                          <g id ="temperatures" fill="black" font-family="Verdana, serif" font-size="10" font-weight="600">
 
                                              <text id="tempr-1" x="20" y="90"  style="text-anchor: middle;"> -7 </text>
@@ -271,7 +301,7 @@
                                              <text id="day-5" x="300" y="100" fill="#333" style="text-anchor: Middle;"> 28.03 </text>
                                          </g>
 
-                                         <!--	<polyline
+                                         <!-- <polyline
                                                   fill="none"
                                                   stroke="red"
                                                   stroke-width="2"
@@ -295,35 +325,14 @@
                                                    stroke="#0074d9"
                                                    stroke-width="4"
                                                    points="
-							    20,50 90,80 160,20 230,0 300,80
-							    "
+                  20,50 90,80 160,20 230,0 300,80
+                  "
                                          />
 
                                      </svg>
 
-                                 </td>
-
-
-
-                             </tr>
-
-
-                            </tbody>
-                        </table>
-
-
-
-                    </div>
-
-                </div>
-            </div>
-
-            </p>
-        </div>
-
-    </div>
-
-
+  </div>
+</div>
 
 
 	<!-- Javascript

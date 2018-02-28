@@ -160,3 +160,18 @@ function  loadWeather() {
     xhttp.send();
     */
 };
+
+
+
+$('.popover-dismiss').popover({
+  trigger: 'focus'
+})
+
+
+function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
+}
