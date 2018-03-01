@@ -139,11 +139,13 @@ function  loadWeather() {
         document.getElementById("tempr-line").setAttribute("points", line);
 
       }
-	function on() {    
+	function on() {
+		console.log("asdf");
     document.getElementById("overlay").style.display = "block";
 }
 
 function off() {
+	
     document.getElementById("overlay").style.display = "none";
 }
     }
