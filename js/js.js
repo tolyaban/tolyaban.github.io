@@ -139,6 +139,13 @@ function  loadWeather() {
         document.getElementById("tempr-line").setAttribute("points", line);
 
       }
+	    
+    document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
+}
     }
     xhr.open('GET', urlString, true);
     xhr.send();
@@ -167,11 +174,3 @@ $('.popover-dismiss').popover({
   trigger: 'focus'
 })
 
-
-function on() {
-    document.getElementById("overlay").style.display = "block";
-}
-
-function off() {
-    document.getElementById("overlay").style.display = "none";
-}
