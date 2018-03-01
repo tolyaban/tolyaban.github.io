@@ -139,7 +139,7 @@ function  loadWeather() {
         document.getElementById("tempr-line").setAttribute("points", line);
 
       }
-	    
+	function on() {    
     document.getElementById("overlay").style.display = "block";
 }
 
